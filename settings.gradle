@@ -1,1 +1,4 @@
 rootProject.name = 'sesintegration'
+
+include 'app'
+include 'lib'
