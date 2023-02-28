@@ -22,12 +22,12 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'com.example.aws.ses-integration:lib:0.0.1-SNAPSHOT'
+	implementation 'org.apache.commons:commons-text:1.10.0'
 
-	compileOnly 'org.projectlombok:lombok'
+	implementation 'software.amazon.awssdk:sesv2:2.20.13'
+	implementation 'software.amazon.awssdk:protocol-core:2.20.12'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-
-	annotationProcessor 'org.projectlombok:lombok'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
