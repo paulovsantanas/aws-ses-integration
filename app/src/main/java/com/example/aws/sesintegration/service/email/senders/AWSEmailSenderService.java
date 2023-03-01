@@ -47,10 +47,9 @@ public class AWSEmailSenderService implements IRawEmailSender, IRawEmailWithAtta
 		EmailContent emailContent = this.buildEmailContent(sub, body);
 
 		SendEmailRequest emailRequest = this.buildSendEmailRequest(emailContent, sender, destination);
-
 		try {
 			System.out.println("Attempting to send an email through Amazon SES " + "using the AWS SDK for Java...");
-//			client.sendEmail(emailRequest);
+			this.sendEmailRequest(emailRequest);
 			System.out.println("email was sent");
 		} catch (SesV2Exception e) {
 			System.err.println(e.awsErrorDetails().errorMessage());
@@ -77,13 +76,17 @@ public class AWSEmailSenderService implements IRawEmailSender, IRawEmailWithAtta
 			EmailContent emailContent = buildEmailContent(rawMessage);
 			SendEmailRequest request = this.buildSendEmailRequest(emailContent);
 
-//			client.sendEmail(request);
+			this.sendEmailRequest(request);
 			System.out.println("The email message was successfully sent with an attachment");
 		} catch (SesV2Exception e) {
 			System.err.println(e.awsErrorDetails().errorMessage());
 		} catch (MessagingException | IOException e) {
 			System.err.println(e.getMessage());
 		}
+	}
+
+	public void sendEmailRequest(SendEmailRequest request) { // public para ser mockavel
+		client.sendEmail(request);
 	}
 
 	private RawMessage buildRawMessage(final MimeMessage message) throws MessagingException, IOException {

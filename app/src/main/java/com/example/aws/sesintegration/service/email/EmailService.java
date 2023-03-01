@@ -19,21 +19,23 @@ public class EmailService implements ResourceFileGetter {
 	AWSEmailSenderService emailSenderService;
 
 	public void send(EmailSendRequestCommand command) {
+		String filled = null;
 		try {
-			String filled = this.fillTemplate(command.templatePath(), command.templateData());
-			this.emailSenderService.send(command.sender(), command.recipients(), command.subject(), filled);
+			filled = this.fillTemplate(command.templatePath(), command.templateData());
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
+		this.emailSenderService.send(command.sender(), command.recipients(), command.subject(), filled);
 	}
 
 	public void send(EmailSendRequestCommand command, List<File> attachments) {
+		String filled = null;
 		try {
-			String filled = this.fillTemplate(command.templatePath(), command.templateData());
-			this.emailSenderService.send(command.sender(), command.recipients(), command.subject(), filled, attachments);
+			filled = this.fillTemplate(command.templatePath(), command.templateData());
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
+		this.emailSenderService.send(command.sender(), command.recipients(), command.subject(), filled, attachments);
 	}
 
 	private String fillTemplate(String templatePath, Map<String, String> templateData) throws IOException {
