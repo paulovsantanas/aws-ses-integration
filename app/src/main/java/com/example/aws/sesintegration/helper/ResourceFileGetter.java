@@ -9,11 +9,11 @@ import java.io.InputStreamReader;
 
 public interface ResourceFileGetter {
 
-	default String getTemplate(String templatePath) throws IOException, IllegalArgumentException {
+	default String getResource(String resourcePath) throws IOException, IllegalArgumentException {
 		ClassLoader classLoader = EmailService.class.getClassLoader();
-		InputStream is = classLoader.getResourceAsStream(templatePath);
+		InputStream is = classLoader.getResourceAsStream(resourcePath);
 		if (is == null) {
-			throw new IllegalArgumentException(templatePath + " não encontrado");
+			throw new IllegalArgumentException(resourcePath + " não encontrado");
 		}
 
 		return this.readFromInputStream(is);
