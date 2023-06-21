@@ -20,11 +20,11 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.example.aws.ses-integration:lib:0.0.1-SNAPSHOT'
 	implementation 'org.apache.commons:commons-text:1.10.0'
 	implementation 'com.sun.mail:javax.mail:1.6.2'
-
 	implementation 'software.amazon.awssdk:sesv2:2.20.13'
 	implementation 'software.amazon.awssdk:protocol-core:2.20.12'
 
